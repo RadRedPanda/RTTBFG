@@ -2,6 +2,7 @@ package com.company;
 import java.util.*;
 public class GameText {
     private String return_text;
+    private List<List <String>> rooms;
     private int currentroom;
 
 
