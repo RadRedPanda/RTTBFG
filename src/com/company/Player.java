@@ -34,6 +34,9 @@ public class Player {
     public List GetItems(){
         return items;
     }
+    public void SetItems(String item_name){
+        items.add(item_name);
+    }
 
     public void PickupItem(String item_name) {
         items.add(item_name);
