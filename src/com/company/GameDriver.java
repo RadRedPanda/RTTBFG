@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class GameWindow {
+public class GameDriver {
 
     private Player p;
-    private BattleSystem bs;
+    private EncounterThread bs;
     private Thread encounterChecker;
     private JFrame frame;
     private JPanel mainPanel, inputPanel, playerPanel;
@@ -16,7 +16,7 @@ public class GameWindow {
     private Action enterPressed;
     private JScrollPane scroll;
 
-    public GameWindow() {
+    public GameDriver() {
 
         p = new Player();
         frame = new JFrame("Game");
@@ -61,7 +61,7 @@ public class GameWindow {
         playerText.setEditable(false);
         playerPanel.add(playerText);
 
-        bs = new BattleSystem();
+        bs = new EncounterThread();
         Thread t = new Thread(bs);
         t.start();
 
@@ -93,7 +93,7 @@ public class GameWindow {
     public void randomFight() {
         updateTextField("Encounter!");
         Enemy enemy = bs.randomEnemy();
-        while(enemy.getHealth() > 0 && p.GetHealth() > 0){
+        while(enemy.getHealth() > 0 && p.getHealth() > 0){
             updateGameText("A wild " + enemy.getName() + " has appeared!");
             try{
                 Thread.sleep(1000);
@@ -117,7 +117,7 @@ public class GameWindow {
 
     public static void main(String[] args) {
 
-        GameWindow frame = new GameWindow();
+        GameDriver frame = new GameDriver();
 
     }
 

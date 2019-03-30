@@ -1,7 +1,6 @@
 package com.company;
 import java.util.*;
-// Health
-// Items
+
 public class Player {
     private int health;
     private String PlayerName;
@@ -15,38 +14,39 @@ public class Player {
         currency = 0;
     }
 
-    public void SetPlayer(String name){
+    public void setPlayer(String name){
         PlayerName = name;
     }
 
-    public String GetPlayer(){
+    public String getPlayer(){
         return PlayerName;
     }
 
-    public void SetHealth(int player_health){
-        health = player_health;
+    public void setHealth(int playerHealth){
+        health = playerHealth;
     }
 
-    public int GetHealth(){
+    public int getHealth(){
         return health;
     }
 
-    public List GetItems(){
+    public List getItems(){
         return items;
     }
-    public void SetItems(String item_name){
-        items.add(item_name);
+
+    public void setItems(String itemName){
+        items.add(itemName);
     }
 
-    public void PickupItem(String item_name) {
-        items.add(item_name);
+    public void pickupItem(String itemName) {
+        items.add(itemName);
     }
 
-    public void DropItem(String item_name){
+    public void dropItem(String itemName){
         int size = items.size();
 
         for (int i = 0; i < size; i++) {
-            if (item_name == items.get(i)){
+            if (itemName == items.get(i)){
                 items.remove(i);
                 break;
             }

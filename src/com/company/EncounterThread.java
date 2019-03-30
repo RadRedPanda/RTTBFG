@@ -1,10 +1,10 @@
 package com.company;
 
-public class BattleSystem implements Runnable {
+public class EncounterThread implements Runnable {
 
     private boolean inEncounter = false;
 
-    public BattleSystem() {}
+    public EncounterThread() {}
 
     public Enemy randomEnemy(){
         Enemy e = new Enemy((int)(Math.random() * 2));
