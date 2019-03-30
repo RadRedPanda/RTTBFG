@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 
 public class GameWindow {
 
+    private Player p;
     private BattleSystem bs;
     private Thread encounterChecker;
     private JFrame frame;
@@ -17,6 +18,7 @@ public class GameWindow {
 
     public GameWindow() {
 
+        p = new Player();
         frame = new JFrame("Game");
         frame.setSize(800, 800);
         frame.setLocationRelativeTo(null);
@@ -90,6 +92,21 @@ public class GameWindow {
 
     public void randomFight() {
         updateTextField("Encounter!");
+        Enemy enemy = bs.randomEnemy();
+        while(enemy.getHealth() > 0 && p.GetHealth() > 0){
+            updateGameText("A wild " + enemy.getName() + " has appeared!");
+            try{
+                Thread.sleep(1000);
+            } catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void updateGameText(String s) {
+        textField.setText("");
+        gameText.setText(gameText.getText() + "\n" + "" + s);
+        scroll.getVerticalScrollBar().setValue(scroll.getVerticalScrollBar().getMaximum());
     }
 
     public void updateTextField(String s) {

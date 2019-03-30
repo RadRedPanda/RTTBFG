@@ -6,8 +6,13 @@ public class BattleSystem implements Runnable {
 
     public BattleSystem() {}
 
-    private Enemy pickEnemy(){
-        Enemy e = new Enemy(1);
+    public Enemy randomEnemy(){
+        Enemy e = new Enemy((int)(Math.random() * 2));
+        return e;
+    }
+
+    public Enemy fightEnemy(int selection){
+        Enemy e = new Enemy(selection);
         return e;
     }
 
