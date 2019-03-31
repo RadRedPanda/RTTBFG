@@ -8,6 +8,7 @@ public class GameDriver {
 
     private Player p;
     private EncounterThread bs;
+    private CommandHandler handler;
     private Thread encounterChecker;
     private JFrame frame;
     private JPanel mainPanel, inputPanel, playerPanel;
@@ -36,11 +37,14 @@ public class GameDriver {
         inputPanel.setSize(800,100);
         inputPanel.setBorder(BorderFactory.createRaisedBevelBorder());
 
+        handler = new CommandHandler();
+
         enterPressed = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = textField.getText();
                 updateTextField(input);
+                updateGameText(handler.execute(input));
             }
         };
 
