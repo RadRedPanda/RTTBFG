@@ -147,9 +147,12 @@ public class GameDriver {
         if(currentEnemy.getHealth() <= 0) {
             updateGameText("You killed the " + currentEnemy.getName() + "!");
             bs.setInEncounter(false);
-            p.addItems(currentEnemy.rollDrop());
-            p.giveMoney(currentEnemy.getCurrency());
+            //p.addItems(currentEnemy.rollDrop());
+            int droppedMoney = currentEnemy.getCurrency();
+            updateGameText("It dropped " + droppedMoney + " monies!");
+            p.giveMoney(droppedMoney);
         }
+        updatePlayerText();
     }
 
     public void randomFight() {
@@ -157,7 +160,7 @@ public class GameDriver {
         currentEnemy = bs.randomEnemy();
         updateGameText("A wild " + currentEnemy.getName() + " has appeared!");
         int cooldown = 0;
-        while((currentEnemy.getHealth() > 0 && p.getHealth() > 0) || !bs.isInEncounter()){
+        while((currentEnemy.getHealth() > 0 && p.getHealth() > 0) || bs.isInEncounter()){
             if(currentEnemy.getAttacking()){
                 if(cooldown++ >= currentEnemy.getAttackDelay()) {
                     int damage = currentEnemy.rollAttack();
@@ -203,6 +206,7 @@ public class GameDriver {
         playerText.append("Player Info\n\n");
         playerText.append("\nClass: " + p.getPlayer());
         playerText.append("\n\nHealth: " + p.getHealth());
+        playerText.append("\n\nMoney: " + p.getCurrency());
         playerText.append("\n\nItems:");
         for(int i = 0; i < p.getItems().size(); i++) {
             playerText.append("\n\t" + p.getItems().get(i));

@@ -88,4 +88,8 @@ public class Player {
     public void giveMoney(int cash){
         currency += cash;
     }
+
+    public int getCurrency(){
+        return currency;
+    }
 }
