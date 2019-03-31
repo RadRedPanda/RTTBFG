@@ -2,14 +2,14 @@ package com.company;
 import java.util.*;
 public class Room {
 
-    private List<String> items;
+    private List<Weapons> weapons;
     private String name;
     private String roomMessage;
     private String desc;
     private boolean inUse;
 
     public Room(boolean b){
-        items = new ArrayList<>();
+        weapons = new ArrayList<>();
         roomMessage = "";
         desc = "";
         name = "";
@@ -39,12 +39,9 @@ public class Room {
         return desc;
     }
 
-    public void setItems(String item){
-        items.add(item);
-    }
 
-    public List<String> getItems(){
-        return items;
+    public List<Weapons> getItems(){
+        return weapons;
     }
 
     public void setInUse(boolean b) {

@@ -4,6 +4,7 @@ import java.util.*;
 public class Player {
     private int health;
     private String PlayerName;
+    private List<Weapons> weapons;
     private List<String> items;
     private int currency;
     private boolean blocking;

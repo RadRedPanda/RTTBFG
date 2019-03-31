@@ -1,12 +1,18 @@
 package com.company;
 import java.util.*;
 public class Weapons {
-    private List<String> items;
+    private String weapon;
     private int minDamage, maxDamage;
 
-    public List getItems(){ return items; }
+    public Weapons(){
+        weapon = "";
+        minDamage = 0;
+        maxDamage = 0;
+    }
 
-    public void setItems(String item){items.add(item);}
+    public String getItems(){return weapon;}
+
+    public void setItems(String weapon_name){weapon = weapon_name;}
 
     public int getMinDamage(){return minDamage;}
 
@@ -15,6 +21,8 @@ public class Weapons {
     public int getMaxDamage(){return maxDamage;}
 
     public void setMaxDamage(int damage){maxDamage = damage;}
+
+
 
 
 
