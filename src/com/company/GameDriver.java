@@ -143,6 +143,8 @@ public class GameDriver {
                     updateGameText("You couldn't get away!");
                 }
                 break;
+            default:
+                updateGameText("You can't do that, the " + currentEnemy.getName() + " stops you!");
         }
         if(currentEnemy.getHealth() <= 0) {
             updateGameText("You killed the " + currentEnemy.getName() + "!");
