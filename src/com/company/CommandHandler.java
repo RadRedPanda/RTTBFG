@@ -8,8 +8,12 @@ public class CommandHandler {
 
     public CommandHandler() {
         rooms = new ArrayList<>();
-        rooms.add(new ArrayList<>());
-        rooms.get(0).add(new Room());
+        for(int i = 0; i < 5; i++) {
+            rooms.add(new ArrayList<>());
+            for(int j = 0; j < 5; j++) {
+                rooms.get(i).add(new Room());
+            }
+        }
 
         currentRoomX = 0;
         currentRoomY = 0;
@@ -56,11 +60,11 @@ public class CommandHandler {
 
     }
 
-    public void SetCommand(String commandIn){
+    public void setCommand(String commandIn){
         command = commandIn;
     }
 
-    public String GetCommand(){
+    public String getCommand(){
         return command;
     }
 
@@ -78,7 +82,7 @@ public class CommandHandler {
 
     }
 
-    public String DoLook(String command){
+    public String doLook(String command){
     return "";
     }
 
