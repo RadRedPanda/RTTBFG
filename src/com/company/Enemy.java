@@ -28,6 +28,12 @@ public class Enemy {
                 minAttack = 5;
                 maxAttack = 10;
                 break;
+            case 2:
+                health = 10;
+                enemyName = "Bat";
+                minAttack = 2;
+                maxAttack = 4;
+                break;
         }
     }
 

@@ -93,8 +93,9 @@ public class GameDriver {
     public void randomFight() {
         updateTextField("Encounter!");
         Enemy enemy = bs.randomEnemy();
+        updateGameText("A wild " + enemy.getName() + " has appeared!");
         while(enemy.getHealth() > 0 && p.getHealth() > 0){
-            updateGameText("A wild " + enemy.getName() + " has appeared!");
+
             try{
                 Thread.sleep(1000);
             } catch(InterruptedException e){

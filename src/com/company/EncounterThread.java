@@ -7,7 +7,7 @@ public class EncounterThread implements Runnable {
     public EncounterThread() {}
 
     public Enemy randomEnemy(){
-        Enemy e = new Enemy((int)(Math.random() * 2));
+        Enemy e = new Enemy((int)(Math.random() * 3));
         return e;
     }
 
@@ -32,7 +32,7 @@ public class EncounterThread implements Runnable {
                 inEncounter = true;
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
