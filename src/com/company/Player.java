@@ -75,4 +75,13 @@ public class Player {
     public int rollAttack(){
         return (int)(Math.random() * attackRange + minAttack);
     }
+
+    public Weapons searchWeapons(String name){
+        for(int i=0; i<weapons.size(); i++){
+            if(weapons.get(i).getWeapon().toLowerCase() == name.toLowerCase()){
+                return weapons.get(i);
+            }
+        }
+        return null;
+    }
 }
