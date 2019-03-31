@@ -29,6 +29,7 @@ public class CommandHandler {
         rooms.get(0).get(0).setRoomName("Cottage");
         rooms.get(0).get(0).setRoomMessage("You wake up in a small one-room cottage. You are laying on a short cot. There is a suit of armor hanging on the wall and a villager’s tunic spread out on a table. Which do you choose to put on?");
         rooms.get(0).get(0).setDesc("Its a cottage. It smells like cheese");
+        rooms.get(0).get(0).getWeapons();
         rooms.get(0).get(0).setInUse(true);
 
         //Central

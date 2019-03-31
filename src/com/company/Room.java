@@ -40,7 +40,7 @@ public class Room {
     }
 
 
-    public List<Weapons> getItems(){
+    public List<Weapons> getWeapons(){
         return weapons;
     }
 
