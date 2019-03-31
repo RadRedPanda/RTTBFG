@@ -107,6 +107,7 @@ public class GameDriver {
     }
 
     public String fightBack(ArrayList<String> command){
+        int damage;
         switch(command.get(0)){
             case "block":
                 if(!p.isBlocking() && currentEnemy.getAttacking()) {
@@ -119,12 +120,19 @@ public class GameDriver {
                 }
                 break;
             case "attack":
-                int damage = p.rollAttack();
+                damage = p.rollAttack();
                 currentEnemy.changeHealth(-damage);
                 updateGameText("You dealt " + damage + " damage to the " + currentEnemy.getName() + "!");
                 break;
             case "use":
-                ////////////////////// DO STUFF WITH WEAPONS
+                Weapons w = p.searchWeapons(command.get(1));
+                if(w != null) {
+                    damage = w.rollAttack();
+                    currentEnemy.changeHealth(-damage);
+                    updateGameText("You hit the " + currentEnemy.getName() + " with a " + w.getWeapon() + " and dealt " + damage + " damage!");
+                }else{
+                    updateGameText("You don't have a " + command.get(1) + "!");
+                }
                 break;
             case "run":
                 int runAway = (int)(Math.random() * 5);

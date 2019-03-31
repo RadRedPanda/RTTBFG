@@ -22,9 +22,11 @@ public class Weapons {
 
     public void setMaxDamage(int damage){maxDamage = damage;}
 
+    public String getWeapon(){
+        return weapon;
+    }
 
-
-
-
-
+    public int rollAttack(){
+        return (int)(Math.random() * (maxDamage + 1 - minDamage) + minDamage);
+    }
 }
