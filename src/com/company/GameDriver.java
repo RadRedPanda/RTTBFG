@@ -103,7 +103,6 @@ public class GameDriver {
         frame.add(playerPanel);
         frame.add(inputPanel, BorderLayout.SOUTH);
         frame.setVisible(true);
-
     }
 
     public void fightBack(ArrayList<String> command){
