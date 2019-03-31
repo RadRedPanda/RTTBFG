@@ -6,12 +6,14 @@ public class Player {
     private String PlayerName;
     private List<String> items;
     private int currency;
+    private boolean blocking;
 
     public Player(){
         health = 100;
         PlayerName = "";
         items = new ArrayList<String>();
         currency = 0;
+        blocking = false;
     }
 
     public void setPlayer(String name){
@@ -24,6 +26,10 @@ public class Player {
 
     public void setHealth(int playerHealth){
         health = playerHealth;
+    }
+
+    public void changeHealth(int change){
+        health += change;
     }
 
     public int getHealth(){
@@ -53,7 +59,11 @@ public class Player {
         }
     }
 
+    public boolean isBlocking(){
+        return blocking;
+    }
 
-
-
+    public void setBlocking(boolean block){
+        blocking = block;
+    }
 }

@@ -94,8 +94,27 @@ public class GameDriver {
         updateTextField("Encounter!");
         Enemy enemy = bs.randomEnemy();
         updateGameText("A wild " + enemy.getName() + " has appeared!");
+        int cooldown = 0;
         while(enemy.getHealth() > 0 && p.getHealth() > 0){
-
+            if(enemy.getAttacking()){
+                if(cooldown++ >= enemy.getAttackDelay()) {
+                    int damage = enemy.rollAttack();
+                    if (p.isBlocking()) {
+                        damage /= 2;
+                        p.setBlocking(false);
+                    }
+                    updateGameText("The " + enemy.getName() + " hit you for " + damage + " damage!");
+                    p.changeHealth(-damage);
+                    enemy.isAttacking(false);
+                    cooldown = 0;
+                }
+            }else{
+                int chance = (int)(Math.random() * enemy.getAttackSpeed());
+                if(chance == 0) {
+                    updateGameText("The " + enemy.getName() + " is getting ready to attack!");
+                    enemy.isAttacking(true);
+                }
+            }
             try{
                 Thread.sleep(1000);
             } catch(InterruptedException e){
@@ -105,7 +124,6 @@ public class GameDriver {
     }
 
     public void updateGameText(String s) {
-        textField.setText("");
         gameText.setText(gameText.getText() + "\n" + "" + s);
         scroll.getVerticalScrollBar().setValue(scroll.getVerticalScrollBar().getMaximum());
     }
