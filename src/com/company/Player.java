@@ -8,6 +8,8 @@ public class Player {
     private List<String> items;
     private int currency;
     private boolean blocking;
+    private int minAttack;
+    private int attackRange;
 
     public Player(){
         health = 100;
@@ -15,6 +17,8 @@ public class Player {
         items = new ArrayList<String>();
         currency = 0;
         blocking = false;
+        minAttack = 5;
+        attackRange = 3;
     }
 
     public void setPlayer(String name){
@@ -66,5 +70,9 @@ public class Player {
 
     public void setBlocking(boolean block){
         blocking = block;
+    }
+
+    public int rollAttack(){
+        return (int)(Math.random() * attackRange + minAttack);
     }
 }

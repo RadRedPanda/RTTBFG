@@ -3,10 +3,13 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameDriver {
 
     private Player p;
+    private Enemy currentEnemy;
     private EncounterThread bs;
     private CommandHandler handler;
     private Thread encounterChecker;
@@ -39,12 +42,25 @@ public class GameDriver {
 
         handler = new CommandHandler();
 
+        bs = new EncounterThread();
+        Thread t = new Thread(bs);
+        t.start();
+
         enterPressed = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = textField.getText();
+                String[] words = input.split(" ");
+                ArrayList<String> inputs = new ArrayList<String>();
+                for(int i = 0; i < words.length; i++) {
+                    inputs.add(words[i]);
+                }
                 updateTextField(input);
-                updateGameText(handler.execute(input));
+                if (bs.isInEncounter()) {
+                    fightBack(inputs);
+                } else {
+                    updateGameText(handler.execute(input));
+                }
             }
         };
 
@@ -64,10 +80,6 @@ public class GameDriver {
         playerText.setPreferredSize(new Dimension(250, 690));
         playerText.setEditable(false);
         playerPanel.add(playerText);
-
-        bs = new EncounterThread();
-        Thread t = new Thread(bs);
-        t.start();
 
         encounterChecker = new Thread() {
             public void run() {
@@ -94,29 +106,63 @@ public class GameDriver {
 
     }
 
+    public String fightBack(ArrayList<String> command){
+        switch(command.get(0)){
+            case "block":
+                if(!p.isBlocking() && currentEnemy.getAttacking()) {
+                    p.setBlocking(true);
+                    updateGameText("You get ready to block!");
+                }else if(p.isBlocking()){
+                    updateGameText("You are already blocking!");
+                }else{
+                    updateGameText("What are you blocking?");
+                }
+                break;
+            case "attack":
+                int damage = p.rollAttack();
+                currentEnemy.changeHealth(-damage);
+                updateGameText("You dealt " + damage + " damage to the " + currentEnemy.getName() + "!");
+                break;
+            case "use":
+                ////////////////////// DO STUFF WITH WEAPONS
+                break;
+            case "run":
+                int runAway = (int)(Math.random() * 5);
+                if(runAway == 0){
+                    updateGameText("You ran away!");
+                    bs.setInEncounter(false);
+                }else{
+                    updateGameText("You couldn't get away!");
+                }
+                break;
+        }
+        return "hi";
+    }
+
     public void randomFight() {
         updateTextField("Encounter!");
-        Enemy enemy = bs.randomEnemy();
-        updateGameText("A wild " + enemy.getName() + " has appeared!");
+        currentEnemy = bs.randomEnemy();
+        updateGameText("A wild " + currentEnemy.getName() + " has appeared!");
         int cooldown = 0;
-        while(enemy.getHealth() > 0 && p.getHealth() > 0){
-            if(enemy.getAttacking()){
-                if(cooldown++ >= enemy.getAttackDelay()) {
-                    int damage = enemy.rollAttack();
+        while(currentEnemy.getHealth() > 0 && p.getHealth() > 0){
+            if(currentEnemy.getAttacking()){
+                if(cooldown++ >= currentEnemy.getAttackDelay()) {
+                    int damage = currentEnemy.rollAttack();
                     if (p.isBlocking()) {
+                        updateGameText("You blocked " + (damage - (damage / 2)) + " damage!");
                         damage /= 2;
                         p.setBlocking(false);
                     }
-                    updateGameText("The " + enemy.getName() + " hit you for " + damage + " damage!");
+                    updateGameText("The " + currentEnemy.getName() + " hit you for " + damage + " damage!");
                     p.changeHealth(-damage);
-                    enemy.isAttacking(false);
+                    currentEnemy.isAttacking(false);
                     cooldown = 0;
                 }
             }else{
-                int chance = (int)(Math.random() * enemy.getAttackSpeed());
+                int chance = (int)(Math.random() * currentEnemy.getAttackSpeed());
                 if(chance == 0) {
-                    updateGameText("The " + enemy.getName() + " is getting ready to attack!");
-                    enemy.isAttacking(true);
+                    updateGameText("The " + currentEnemy.getName() + " is getting ready to attack!");
+                    currentEnemy.isAttacking(true);
                 }
             }
             try{
