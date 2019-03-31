@@ -4,7 +4,7 @@ import java.util.*;
 public class Player {
     private int health;
     private String PlayerName;
-    private List<Weapons> weapons;
+    private List<Weapon> weapons;
     private List<String> items;
     private int currency;
     private boolean blocking;
@@ -45,7 +45,7 @@ public class Player {
         return items;
     }
 
-    public void setItems(String itemName){
+    public void addItems(String itemName){
         items.add(itemName);
     }
 
@@ -76,12 +76,16 @@ public class Player {
         return (int)(Math.random() * attackRange + minAttack);
     }
 
-    public Weapons searchWeapons(String name){
+    public Weapon searchWeapons(String name){
         for(int i=0; i<weapons.size(); i++){
             if(weapons.get(i).getWeapon().toLowerCase() == name.toLowerCase()){
                 return weapons.get(i);
             }
         }
         return null;
+    }
+
+    public void giveMoney(int cash){
+        currency += cash;
     }
 }

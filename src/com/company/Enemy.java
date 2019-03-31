@@ -7,7 +7,7 @@ public class Enemy {
     private String enemyName;
     private int minAttack;
     private int attackRange;
-    private List<String> items;
+    private List<String> dropTable;
     private int currency;
     private int attackSpeed;
     private int attackDelay;
@@ -26,6 +26,7 @@ public class Enemy {
                 minAttack = 3;
                 attackRange = 2;
                 attackSpeed = 3;
+                currency = 5;
                 break;
             case 1:
                 health = 30;
@@ -33,6 +34,7 @@ public class Enemy {
                 minAttack = 5;
                 attackRange = 5;
                 attackSpeed = 5;
+                currency = 10;
                 break;
             case 2:
                 health = 10;
@@ -40,6 +42,7 @@ public class Enemy {
                 minAttack = 2;
                 attackRange = 2;
                 attackSpeed = 2;
+                currency = 2;
                 break;
         }
     }
@@ -74,5 +77,13 @@ public class Enemy {
 
     public int getAttackDelay(){
         return attackDelay;
+    }
+
+    public String rollDrop(){
+        return dropTable.get((int)(Math.random() * dropTable.size()));
+    }
+
+    public int getCurrency(){
+        return currency;
     }
 }

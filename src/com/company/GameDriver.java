@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class GameDriver {
 
@@ -107,7 +106,7 @@ public class GameDriver {
 
     }
 
-    public String fightBack(ArrayList<String> command){
+    public void fightBack(ArrayList<String> command){
         int damage;
         switch(command.get(0)){
             case "block":
@@ -124,13 +123,9 @@ public class GameDriver {
                 damage = p.rollAttack();
                 currentEnemy.changeHealth(-damage);
                 updateGameText("You dealt " + damage + " damage to the " + currentEnemy.getName() + "!");
-                if(currentEnemy.getHealth() <= 0) {
-                    updateGameText("You killed the " + currentEnemy.getName() + "!");
-                    bs.setInEncounter(false);
-                }
                 break;
             case "use":
-                Weapons w = p.searchWeapons(command.get(1));
+                Weapon w = p.searchWeapons(command.get(1));
                 if(w != null) {
                     damage = w.rollAttack();
                     currentEnemy.changeHealth(-damage);
@@ -149,7 +144,12 @@ public class GameDriver {
                 }
                 break;
         }
-        return "hi";
+        if(currentEnemy.getHealth() <= 0) {
+            updateGameText("You killed the " + currentEnemy.getName() + "!");
+            bs.setInEncounter(false);
+            p.addItems(currentEnemy.rollDrop());
+            p.giveMoney(currentEnemy.getCurrency());
+        }
     }
 
     public void randomFight() {
@@ -157,7 +157,7 @@ public class GameDriver {
         currentEnemy = bs.randomEnemy();
         updateGameText("A wild " + currentEnemy.getName() + " has appeared!");
         int cooldown = 0;
-        while(currentEnemy.getHealth() > 0 && p.getHealth() > 0){
+        while((currentEnemy.getHealth() > 0 && p.getHealth() > 0) || !bs.isInEncounter()){
             if(currentEnemy.getAttacking()){
                 if(cooldown++ >= currentEnemy.getAttackDelay()) {
                     int damage = currentEnemy.rollAttack();

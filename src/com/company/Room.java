@@ -2,7 +2,7 @@ package com.company;
 import java.util.*;
 public class Room {
 
-    private List<Weapons> weapons;
+    private List<Weapon> weapons;
     private String name;
     private String roomMessage;
     private String desc;
@@ -40,7 +40,7 @@ public class Room {
     }
 
 
-    public List<Weapons> getWeapons(){
+    public List<Weapon> getWeapons(){
         return weapons;
     }
 

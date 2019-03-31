@@ -1,10 +1,10 @@
 package com.company;
 import java.util.*;
-public class Weapons {
+public class Weapon {
     private String weapon;
     private int minDamage, maxDamage;
 
-    public Weapons(){
+    public Weapon(){
         weapon = "";
         minDamage = 0;
         maxDamage = 0;
