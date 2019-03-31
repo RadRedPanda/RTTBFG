@@ -85,6 +85,27 @@ public class CommandHandler {
             case("look"):
                 return rooms.get(currentRoomX).get(currentRoomY).getDesc();
 
+            case("search"):
+                String items = "You see the following weapons:\n";
+                if(rooms.get(currentRoomX).get(currentRoomY).getWeapons().size() == 0) {
+                    items += "NO WEAPONS.\n";
+                }
+                else {
+                    for (int i = 0; i < rooms.get(currentRoomX).get(currentRoomY).getWeapons().size(); i++) {
+                        items += "\t" + rooms.get(currentRoomX).get(currentRoomY).getWeapons().get(i) + "\n";
+                    }
+                }
+                items += "You see the following items:\n";
+                if(rooms.get(currentRoomX).get(currentRoomY).getItems().size() == 0) {
+                    items += "NO ITEMS.\n";
+                }
+                else {
+                    for (int i = 0; i < rooms.get(currentRoomX).get(currentRoomY).getItems().size(); i++) {
+                        items += "\t" + rooms.get(currentRoomX).get(currentRoomY).getItems().get(i) + "\n";
+                    }
+                }
+                return items;
+
             case("move north"):
                 if((currentRoomY - 1) < 0) return "The path north is blocked.";
                 if(rooms.get(currentRoomX).get(currentRoomY-1).isInUse()) {
