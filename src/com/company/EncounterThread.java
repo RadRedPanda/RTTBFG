@@ -32,7 +32,7 @@ public class EncounterThread implements Runnable {
                 inEncounter = true;
             }
             try {
-                Thread.sleep(10);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

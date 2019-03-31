@@ -1,6 +1,7 @@
 package com.company;
 import java.util.*;
 public class CommandHandler {
+
     private int currentRoomX;
     private int currentRoomY;
     private String command;

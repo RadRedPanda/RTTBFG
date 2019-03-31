@@ -11,9 +11,9 @@ public class Player {
     private int minAttack;
     private int attackRange;
 
-    public Player(){
+    public Player(String name){
         health = 100;
-        PlayerName = "";
+        PlayerName = name;
         items = new ArrayList<String>();
         currency = 0;
         blocking = false;

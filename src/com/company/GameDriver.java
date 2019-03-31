@@ -22,7 +22,7 @@ public class GameDriver {
 
     public GameDriver() {
 
-        p = new Player();
+        p = new Player("Knight");
         frame = new JFrame("Game");
         frame.setSize(800, 800);
         frame.setLocationRelativeTo(null);
@@ -98,6 +98,7 @@ public class GameDriver {
             }
         };
         encounterChecker.start();
+        updatePlayerText();
 
         frame.add(mainPanel, BorderLayout.WEST);
         frame.add(playerPanel);
@@ -123,6 +124,10 @@ public class GameDriver {
                 damage = p.rollAttack();
                 currentEnemy.changeHealth(-damage);
                 updateGameText("You dealt " + damage + " damage to the " + currentEnemy.getName() + "!");
+                if(currentEnemy.getHealth() <= 0) {
+                    updateGameText("You killed the " + currentEnemy.getName() + "!");
+                    bs.setInEncounter(false);
+                }
                 break;
             case "use":
                 Weapons w = p.searchWeapons(command.get(1));
@@ -148,7 +153,7 @@ public class GameDriver {
     }
 
     public void randomFight() {
-        updateTextField("Encounter!");
+        updateGameText("Encounter!");
         currentEnemy = bs.randomEnemy();
         updateGameText("A wild " + currentEnemy.getName() + " has appeared!");
         int cooldown = 0;
@@ -173,6 +178,7 @@ public class GameDriver {
                     currentEnemy.isAttacking(true);
                 }
             }
+            updatePlayerText();
             try{
                 Thread.sleep(1000);
             } catch(InterruptedException e){
@@ -190,6 +196,17 @@ public class GameDriver {
         textField.setText("");
         gameText.setText(gameText.getText() + "\n\n" + "> " + s);
         scroll.getVerticalScrollBar().setValue(scroll.getVerticalScrollBar().getMaximum());
+    }
+
+    public void updatePlayerText() {
+        playerText.setText("");
+        playerText.append("Player Info\n\n");
+        playerText.append("\nClass: " + p.getPlayer());
+        playerText.append("\n\nHealth: " + p.getHealth());
+        playerText.append("\n\nItems:");
+        for(int i = 0; i < p.getItems().size(); i++) {
+            playerText.append("\n\t" + p.getItems().get(i));
+        }
     }
 
     public static void main(String[] args) {
