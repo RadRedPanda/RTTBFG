@@ -88,7 +88,7 @@ public class CommandHandler {
             case("search"):
                 String items = "You see the following weapons:\n";
                 if(rooms.get(currentRoomX).get(currentRoomY).getWeapons().size() == 0) {
-                    items += "NO WEAPONS.";
+                    items += "NO WEAPONS.\n";
                 }
                 else {
                     for (int i = 0; i < rooms.get(currentRoomX).get(currentRoomY).getWeapons().size(); i++) {
