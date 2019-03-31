@@ -6,7 +6,7 @@ public class Enemy {
     private int health;
     private String enemyName;
     private int minAttack;
-    private int maxAttack;
+    private int attackRange;
     private List<String> items;
     private int currency;
     private int attackSpeed;
@@ -24,21 +24,21 @@ public class Enemy {
                 health = 15;
                 enemyName = "Goblin";
                 minAttack = 3;
-                maxAttack = 5;
+                attackRange = 2;
                 attackSpeed = 3;
                 break;
             case 1:
                 health = 30;
                 enemyName = "Troll";
                 minAttack = 5;
-                maxAttack = 10;
+                attackRange = 5;
                 attackSpeed = 5;
                 break;
             case 2:
                 health = 10;
                 enemyName = "Bat";
                 minAttack = 2;
-                maxAttack = 4;
+                attackRange = 2;
                 attackSpeed = 2;
                 break;
         }
@@ -48,12 +48,16 @@ public class Enemy {
         return health;
     }
 
+    public void changeHealth(int change){
+        health += change;
+    }
+
     public String getName(){
         return enemyName;
     }
 
     public int rollAttack(){
-        return (int)(Math.random() * (maxAttack + 1 - minAttack)) + minAttack;
+        return (int)(Math.random() * attackRange) + minAttack;
     }
 
     public int getAttackSpeed(){
