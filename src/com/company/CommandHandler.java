@@ -29,56 +29,48 @@ public class CommandHandler {
         rooms.get(0).get(0).setRoomName("Cottage");
         rooms.get(0).get(0).setRoomMessage("You wake up in a small one-room cottage. You are laying on a short cot. There is a suit of armor hanging on the wall and a villager’s tunic spread out on a table. Which do you choose to put on?");
         rooms.get(0).get(0).setDesc("Its a cottage. It smells like cheese");
-        rooms.get(0).get(0).setWeapons("testitem"); //REMOVE LATER
         rooms.get(0).get(0).setInUse(true);
 
         //Central
         rooms.get(0).get(1).setRoomName("Central Path");
         rooms.get(0).get(1).setRoomMessage("You're on a path.");
         rooms.get(0).get(1).setDesc("");
-        rooms.get(0).get(1).setWeapons("");
         rooms.get(0).get(1).setInUse(true);
 
         //Lake
         rooms.get(0).get(2).setRoomName("Lake");
         rooms.get(0).get(2).setRoomMessage("You are by the lake.");
         rooms.get(0).get(2).setDesc("");
-        rooms.get(0).get(2).setWeapons("");
         rooms.get(0).get(2).setInUse(true);
 
         //foggy path
         rooms.get(1).get(1).setRoomName("Foggy Path");
         rooms.get(1).get(1).setRoomMessage("You are on a foggy path.");
         rooms.get(1).get(1).setDesc("");
-        rooms.get(1).get(1).setWeapons("");
         rooms.get(1).get(1).setInUse(true);
 
         //forest
         rooms.get(1).get(2).setRoomName("Forest");
         rooms.get(1).get(2).setRoomMessage("You are in a forest.");
         rooms.get(1).get(2).setDesc("");
-        rooms.get(1).get(2).setWeapons("");
         rooms.get(1).get(2).setInUse(true);
 
         //fork
         rooms.get(2).get(2).setRoomName("Fork in the Road");
         rooms.get(2).get(2).setRoomMessage("You are at a fork on the road");
         rooms.get(2).get(2).setDesc("");
-        rooms.get(2).get(2).setWeapons("");
         rooms.get(2).get(2).setInUse(true);
 
         //goblin clearing
         rooms.get(2).get(3).setRoomName("Clearing infested with Goblins!");
         rooms.get(2).get(3).setRoomMessage("You are surrounded by goblins!");
         rooms.get(2).get(3).setDesc("");
-        rooms.get(2).get(3).setWeapons("");
         rooms.get(2).get(3).setInUse(true);
 
         //bat clearing
         rooms.get(3).get(2).setRoomName("Clearing infested with Bats!");
         rooms.get(3).get(2).setRoomMessage("You are surrounded by bats!");
         rooms.get(3).get(2).setDesc("");
-        rooms.get(3).get(2).setWeapons("");
         rooms.get(3).get(2).setInUse(true);
 
     }
